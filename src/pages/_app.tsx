@@ -1,15 +1,16 @@
-import { AppProps } from 'next/app';
-import { SessionProvider as NextAuthSessioProvider } from 'next-auth/react';
-import { Header } from '../components/Header' 
-import '../styles/global.scss';
+import { AppProps } from "next/app";
+import { Header } from "../components/Header";
+import { Provider as NextAuthProvider } from "next-auth/client";
+
+import "../styles/global.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <NextAuthSessioProvider session={pageProps.session} refetchInterval={5 * 60}>
+    <NextAuthProvider session={pageProps.session}>
       <Header />
       <Component {...pageProps} />
-    </NextAuthSessioProvider>
-  )
+    </NextAuthProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
